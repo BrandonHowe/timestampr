@@ -24,6 +24,11 @@ version = project.version
 group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "modid"
 
+jar {
+    // Set the archive name here instead of in shadowJar because ForgeGradle needs it when re-obfuscating the jar.
+    archiveName = project.modName + "-" + version + "-for-MC-1.8.9.jar"
+}
+
 minecraft {
     version = "1.8.9-11.15.1.1764"
     runDir = "run"
