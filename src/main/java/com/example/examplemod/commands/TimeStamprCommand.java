@@ -41,7 +41,9 @@ public class TimeStamprCommand extends CommandBase {
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
         if (args.length == 1) {
-            return getListOfStringsMatchingLastWord(args, "prefix", "suffix", "separator", "status");
+            return getListOfStringsMatchingLastWord(args, "prefix", "suffix", "separator", "status", "color");
+        } else if (args.length == 2) {
+            return getListOfStringsMatchingLastWord(args, "red", "gray", "black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple", "gold", "dark_gray", "blue", "green", "aqua", "light_purple", "yellow", "white");
         }
 
         return null;
@@ -79,7 +81,7 @@ public class TimeStamprCommand extends CommandBase {
                 }
             } else if (args[0].equalsIgnoreCase("color")) {
                 final String capitalizedArg = args[1].toUpperCase();
-                final String[] colors = {"RED", "GRAY", "BLACK", "DARK_BLUE", "DARK_GREEN", "DARK_AQUA", "DARK_RED", "DARK_PURPLE", "GOLD", "DARK_GRAY", "BLUE", "GREEN", "AQUA", "LIGHT_PURPLE", "YELLOW", "WHITE", "MAGIC", "BOLD", "STRIKETHROUGH", "UNDERLINE", "ITALIC"};
+                final String[] colors = {"RED", "GRAY", "BLACK", "DARK_BLUE", "DARK_GREEN", "DARK_AQUA", "DARK_RED", "DARK_PURPLE", "GOLD", "DARK_GRAY", "BLUE", "GREEN", "AQUA", "LIGHT_PURPLE", "YELLOW", "WHITE"};
                 if (ArrayUtils.contains(colors, capitalizedArg)) {
                     main.setColor(capitalizedArg);
                     main.saveConfig();
