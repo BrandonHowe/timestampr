@@ -26,7 +26,13 @@ public class TimeStamprCommand extends CommandBase {
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "Welcome to TimeStampr";
+        return "§7§m------------§7[§b§l TimeStampr §7]§7§m------------" + "\n" +
+                "§b● /timestampr §7- Open this help message" + "\n" +
+                "§b● /timestampr prefix §7- Edit timestamp prefix" + "\n" +
+                "§b● /timestampr separator §7- Edit timestamp separator" + "\n" +
+                "§b● /timestampr suffix §7- Edit timestamp suffix" + "\n" +
+                "§b● /timestampr color §7- Edit timestamp color" + "\n" +
+                "§7§m------------------------------------------";
     }
 
     public int getRequiredPermissionLevel() {
