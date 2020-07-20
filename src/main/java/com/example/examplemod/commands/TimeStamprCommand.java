@@ -42,7 +42,7 @@ public class TimeStamprCommand extends CommandBase {
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, "prefix", "suffix", "separator", "status", "color");
-        } else if (args.length == 2) {
+        } else if (args[0] == "color" && args.length == 2) {
             return getListOfStringsMatchingLastWord(args, "red", "gray", "black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple", "gold", "dark_gray", "blue", "green", "aqua", "light_purple", "yellow", "white");
         }
 
