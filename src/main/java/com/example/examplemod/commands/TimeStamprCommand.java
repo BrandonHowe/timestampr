@@ -13,7 +13,15 @@ import java.util.List;
 
 public class TimeStamprCommand extends CommandBase {
 
-    private TimeStampr main;
+    private final TimeStampr main;
+
+    private final String helpMessage = "\u00a77\u00a7m------------\u00a77[\u00a76\u00a7l TimeStampr v" + TimeStampr.VERSION + " \u00a77]\u00a77\u00a7m------------" + "\n" +
+            "\u00a76 /timestampr \u00a77- Open this help message" + "\n" +
+            "\u00a76 /timestampr prefix \u00a77- Edit timestamp prefix" + "\n" +
+            "\u00a76 /timestampr separator \u00a77- Edit timestamp separator" + "\n" +
+            "\u00a76 /timestampr suffix \u00a77- Edit timestamp suffix" + "\n" +
+            "\u00a76 /timestampr color \u00a77- Edit timestamp color" + "\n" +
+            "\u00a77\u00a7m------------------------------------------";
 
     public TimeStamprCommand() {
         this.main = TimeStampr.getInstance();
@@ -26,13 +34,7 @@ public class TimeStamprCommand extends CommandBase {
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "§7§m------------§7[§b§l TimeStampr §7]§7§m------------" + "\n" +
-                "§b● /timestampr §7- Open this help message" + "\n" +
-                "§b● /timestampr prefix §7- Edit timestamp prefix" + "\n" +
-                "§b● /timestampr separator §7- Edit timestamp separator" + "\n" +
-                "§b● /timestampr suffix §7- Edit timestamp suffix" + "\n" +
-                "§b● /timestampr color §7- Edit timestamp color" + "\n" +
-                "§7§m------------------------------------------";
+        return helpMessage;
     }
 
     public int getRequiredPermissionLevel() {
@@ -42,7 +44,7 @@ public class TimeStamprCommand extends CommandBase {
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, "prefix", "suffix", "separator", "status", "color");
-        } else if (args[0] == "color" && args.length == 2) {
+        } else if (args[0].equals("color") && args.length == 2) {
             return getListOfStringsMatchingLastWord(args, "red", "gray", "black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple", "gold", "dark_gray", "blue", "green", "aqua", "light_purple", "yellow", "white");
         }
 
@@ -52,7 +54,7 @@ public class TimeStamprCommand extends CommandBase {
     @Override
     public void processCommand(ICommandSender ics, String[] args) throws CommandException {
         if (args.length == 0) {
-            TimeStampr.sendMessage("Hi, welcome to TimeStampr v" + TimeStampr.VERSION);
+            TimeStampr.sendMessage(helpMessage);
         } else if (args.length >= 2) {
             String condensedArgs = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
             if (condensedArgs.charAt(0) == '"' && condensedArgs.charAt(condensedArgs.length() - 1) == '"') {
