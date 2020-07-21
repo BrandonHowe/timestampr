@@ -3,15 +3,18 @@ package com.example.examplemod.config;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.*;
 import java.util.HashMap;
 
 public class Config {
-    private boolean enabled = true;
+    @Getter @Setter private boolean enabled = true;
+    @Getter @Setter private boolean seconds = true;
     private File configFile;
     private HashMap<String, String> settings;
-    private String color;
+    @Getter @Setter private String color;
 
     public Config(File configFile) {
         System.out.println("USING FILE " + configFile.getName());
@@ -38,10 +41,11 @@ public class Config {
             JsonObject config = new JsonParser().parse(builder.toString()).getAsJsonObject();
             System.out.println("Config: " + config);
             this.enabled = config.has("enabled") && config.get("enabled").getAsBoolean();
+            this.seconds = config.has("enabled") && config.get("enabled").getAsBoolean();
             JsonObject settings = config.has("settings") ? config.getAsJsonObject("settings").getAsJsonObject() : new JsonObject();
             this.settings = new Gson().fromJson(settings.toString(), HashMap.class);
             this.color = config.has("color") ? config.get("color").getAsString() : "GRAY";
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
     }
@@ -49,6 +53,7 @@ public class Config {
     private void packConfig() {
         JsonObject master = new JsonObject();
         master.addProperty("enabled", true);
+        master.addProperty("seconds", true);
         JsonObject settings = new JsonObject();
         settings.addProperty("prefix", "[");
         settings.addProperty("separator", ":");
@@ -74,6 +79,7 @@ public class Config {
         Gson gson = new Gson();
         JsonObject master = new JsonObject();
         master.addProperty("enabled", true);
+        master.addProperty("seconds", seconds);
         JsonObject settings = gson.toJsonTree(this.settings).getAsJsonObject();
         master.add("settings", settings);
         master.addProperty("color", color);
@@ -83,12 +89,4 @@ public class Config {
     public HashMap<String, String> getSettings() {
         return settings;
     }
-
-    public String getColor() { return color; }
-
-    public void setColor(String val) { color = val; }
-
-    public boolean getEnabled() { return enabled; }
-
-    public void setEnabled(boolean val) { enabled = val; }
 }

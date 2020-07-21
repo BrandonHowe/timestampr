@@ -18,9 +18,11 @@ public final class ClientThread extends Thread {
         b.append(main.getSettings().get("separator"));
         b.append(minute / 10);
         b.append(minute % 10);
-        b.append(main.getSettings().get("separator"));
-        b.append(second / 10);
-        b.append(second % 10);
+        if (main.isSeconds()) {
+            b.append(main.getSettings().get("separator"));
+            b.append(second / 10);
+            b.append(second % 10);
+        }
         b.append(main.getSettings().get("suffix"));
         return b.toString();
     }

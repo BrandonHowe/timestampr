@@ -47,12 +47,21 @@ public class TimeStampr
         saveConfig();
     }
 
-    public boolean getEnabled () {
-        return config.getEnabled();
+    public boolean isEnabled() {
+        return config.isEnabled();
     }
 
     public void setEnabled(boolean val) {
         config.setEnabled(val);
+        saveConfig();
+    }
+
+    public boolean isSeconds () {
+        return config.isSeconds();
+    }
+
+    public void setSeconds(boolean val) {
+        config.setSeconds(val);
         saveConfig();
     }
 

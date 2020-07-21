@@ -17,7 +17,7 @@ public class ChatListener extends ModBase {
 
     @SubscribeEvent
     public void chatmessage(final ClientChatReceivedEvent event) {
-        if (main.getEnabled()) {
+        if (main.isEnabled()) {
             final String colorString = ColorCode.valueOf(main.getColor()).toString();
             ChatComponentText message = new ChatComponentText(colorString + ClientThread.getTime(main));
             message.appendSibling(event.message);

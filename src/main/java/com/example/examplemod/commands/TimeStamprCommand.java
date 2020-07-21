@@ -57,14 +57,14 @@ public class TimeStamprCommand extends CommandBase {
             TimeStampr.sendMessage(helpMessage);
         } else if (args.length == 1) {
             if (args[0].equalsIgnoreCase("enable")) {
-                if (main.getEnabled()) {
+                if (main.isEnabled()) {
                     TimeStampr.sendMessage("TimeStampr is already enabled!");
                 } else {
                     main.setEnabled(true);
                     TimeStampr.sendMessage("Enabled TimeStampr!");
                 }
             } else if (args[0].equalsIgnoreCase("disable")) {
-                if (!main.getEnabled()) {
+                if (!main.isEnabled()) {
                     TimeStampr.sendMessage("TimeStampr is already disabled!");
                 } else {
                     main.setEnabled(false);
@@ -97,6 +97,26 @@ public class TimeStamprCommand extends CommandBase {
                     TimeStampr.sendMessage("Changed TimeStampr color to " + ColorCode.valueOf(capitalizedArg).toString() + args[1].toLowerCase());
                 } else {
                     TimeStampr.sendMessage("That color is not valid!");
+                }
+            } else if (args[0].equalsIgnoreCase("seconds")) {
+                final boolean args1Enable = args[1].equalsIgnoreCase("on");
+                final boolean args1Disable = args[1].equalsIgnoreCase("off");
+                if (!args1Enable && !args1Disable) {
+                    TimeStampr.sendMessage("You have to specify on or off!");
+                } else if (args1Enable) {
+                    if (main.isSeconds()) {
+                        TimeStampr.sendMessage("Seconds are already enabled!");
+                    } else {
+                        main.setSeconds(true);
+                        TimeStampr.sendMessage("Successfully enabled seconds!");
+                    }
+                } else {
+                    if (!main.isSeconds()) {
+                        TimeStampr.sendMessage("Seconds are already disabled!");
+                    } else {
+                        main.setSeconds(false);
+                        TimeStampr.sendMessage("Successfully disabled seconds!");
+                    }
                 }
             } else {
                 TimeStampr.sendMessage("You need your new value to be in quotes!");
