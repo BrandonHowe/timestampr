@@ -44,6 +44,16 @@ public class TimeStampr
 
     public void setColor(String val) {
         config.setColor(val);
+        saveConfig();
+    }
+
+    public boolean getEnabled () {
+        return config.getEnabled();
+    }
+
+    public void setEnabled(boolean val) {
+        config.setEnabled(val);
+        saveConfig();
     }
 
     public void reloadConfig() {

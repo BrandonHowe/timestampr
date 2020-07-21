@@ -87,4 +87,8 @@ public class Config {
     public String getColor() { return color; }
 
     public void setColor(String val) { color = val; }
+
+    public boolean getEnabled() { return enabled; }
+
+    public void setEnabled(boolean val) { enabled = val; }
 }

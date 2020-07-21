@@ -55,7 +55,23 @@ public class TimeStamprCommand extends CommandBase {
     public void processCommand(ICommandSender ics, String[] args) throws CommandException {
         if (args.length == 0) {
             TimeStampr.sendMessage(helpMessage);
-        } else if (args.length >= 2) {
+        } else if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("enable")) {
+                if (main.getEnabled()) {
+                    TimeStampr.sendMessage("TimeStampr is already enabled!");
+                } else {
+                    main.setEnabled(true);
+                    TimeStampr.sendMessage("Enabled TimeStampr!");
+                }
+            } else if (args[0].equalsIgnoreCase("disable")) {
+                if (!main.getEnabled()) {
+                    TimeStampr.sendMessage("TimeStampr is already disabled!");
+                } else {
+                    main.setEnabled(false);
+                    TimeStampr.sendMessage("Disabled TimeStampr!");
+                }
+            }
+        } else {
             String condensedArgs = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
             if (condensedArgs.charAt(0) == '"' && condensedArgs.charAt(condensedArgs.length() - 1) == '"') {
                 String sliceFirst = condensedArgs.substring(1);
@@ -72,21 +88,12 @@ public class TimeStamprCommand extends CommandBase {
                     main.getSettings().replace("separator", slicedArg);
                     main.saveConfig();
                     TimeStampr.sendMessage("Changed TimeStampr separator to " + slicedArg);
-                } else if (args[0].equalsIgnoreCase("status")) {
-                    if (args[1].equalsIgnoreCase("on")) {
-
-                    } else if (args[1].equalsIgnoreCase("off")) {
-
-                    } else {
-                        TimeStampr.sendMessage("The status must be either on or off!");
-                    }
                 }
             } else if (args[0].equalsIgnoreCase("color")) {
                 final String capitalizedArg = args[1].toUpperCase();
                 final String[] colors = {"RED", "GRAY", "BLACK", "DARK_BLUE", "DARK_GREEN", "DARK_AQUA", "DARK_RED", "DARK_PURPLE", "GOLD", "DARK_GRAY", "BLUE", "GREEN", "AQUA", "LIGHT_PURPLE", "YELLOW", "WHITE"};
                 if (ArrayUtils.contains(colors, capitalizedArg)) {
                     main.setColor(capitalizedArg);
-                    main.saveConfig();
                     TimeStampr.sendMessage("Changed TimeStampr color to " + ColorCode.valueOf(capitalizedArg).toString() + args[1].toLowerCase());
                 } else {
                     TimeStampr.sendMessage("That color is not valid!");
