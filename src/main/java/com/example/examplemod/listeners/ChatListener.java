@@ -21,6 +21,7 @@ public class ChatListener extends ModBase {
             final String colorString = ColorCode.valueOf(main.getColor()).toString();
             ChatComponentText message = new ChatComponentText(colorString + ClientThread.getTime(main));
             message.appendSibling(event.message);
+            event.message = message;
         }
     }
 }
