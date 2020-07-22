@@ -16,6 +16,8 @@ public final class ClientThread extends Thread {
         final StringBuilder b = new StringBuilder(main.getSettings().get("prefix"));
         if (!main.is24Hour() && hour >= 10) {
             b.append(hour / 10);
+        } else if (main.is24Hour()) {
+            b.append(hour / 10);
         }
         b.append(hour % 10);
         b.append(main.getSettings().get("separator"));
