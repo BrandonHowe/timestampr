@@ -12,6 +12,7 @@ public final class ClientThread extends Thread {
         final int hour = cal.get(main.is24Hour() ? Calendar.HOUR_OF_DAY : Calendar.HOUR);
         final int minute = cal.get(Calendar.MINUTE);
         final int second = cal.get(Calendar.SECOND);
+        final int milliseconds = cal.get(Calendar.MILLISECOND);
         final StringBuilder b = new StringBuilder(main.getSettings().get("prefix"));
         if (!main.is24Hour() && hour >= 10) {
             b.append(hour / 10);
@@ -24,6 +25,12 @@ public final class ClientThread extends Thread {
             b.append(main.getSettings().get("separator"));
             b.append(second / 10);
             b.append(second % 10);
+        }
+        if (main.isMilliseconds()) {
+            b.append(".");
+            b.append(milliseconds / 100);
+            b.append((milliseconds / 10) % 10);
+            b.append(milliseconds % 10);
         }
         if (!main.is24Hour()) {
             b.append(cal.get(Calendar.HOUR_OF_DAY) < 12 ? " AM" : " PM");

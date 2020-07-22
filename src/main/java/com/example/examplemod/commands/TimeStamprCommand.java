@@ -118,6 +118,26 @@ public class TimeStamprCommand extends CommandBase {
                         TimeStampr.sendMessage("Successfully disabled seconds!");
                     }
                 }
+            } else if (args[0].equalsIgnoreCase("milliseconds")) {
+                final boolean args1Enable = args[1].equalsIgnoreCase("on");
+                final boolean args1Disable = args[1].equalsIgnoreCase("off");
+                if (!args1Enable && !args1Disable) {
+                    TimeStampr.sendMessage("You have to specify on or off!");
+                } else if (args1Enable) {
+                    if (main.isMilliseconds()) {
+                        TimeStampr.sendMessage("Milliseconds are already enabled!");
+                    } else {
+                        main.setMilliseconds(true);
+                        TimeStampr.sendMessage("Successfully enabled milliseconds!");
+                    }
+                } else {
+                    if (!main.isMilliseconds()) {
+                        TimeStampr.sendMessage("Milliseconds are already disabled!");
+                    } else {
+                        main.setMilliseconds(false);
+                        TimeStampr.sendMessage("Successfully disabled milliseconds!");
+                    }
+                }
             } else if (args[0].equalsIgnoreCase("24hour")) {
                 final boolean args1Enable = args[1].equalsIgnoreCase("on");
                 final boolean args1Disable = args[1].equalsIgnoreCase("off");
