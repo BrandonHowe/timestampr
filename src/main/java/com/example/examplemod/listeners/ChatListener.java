@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ChatListener extends ModBase {
 
-    private TimeStampr main;
+    private final TimeStampr main;
 
     public ChatListener () {
         main = TimeStampr.getInstance();
@@ -17,9 +17,11 @@ public class ChatListener extends ModBase {
 
     @SubscribeEvent
     public void chatmessage(final ClientChatReceivedEvent event) {
-        final String colorString = ColorCode.valueOf(main.getColor()).toString();
-        ChatComponentText message = new ChatComponentText(colorString + ClientThread.getTime(main));
-        message.appendSibling(event.message);
-        event.message = message;
+        if (main.isEnabled()) {
+            final String colorString = ColorCode.valueOf(main.getColor()).toString();
+            ChatComponentText message = new ChatComponentText(colorString + ClientThread.getTime(main));
+            message.appendSibling(event.message);
+            event.message = message;
+        }
     }
 }

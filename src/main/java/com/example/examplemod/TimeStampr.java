@@ -44,6 +44,43 @@ public class TimeStampr
 
     public void setColor(String val) {
         config.setColor(val);
+        saveConfig();
+    }
+
+    public boolean isEnabled() {
+        return config.isEnabled();
+    }
+
+    public void setEnabled(boolean val) {
+        config.setEnabled(val);
+        saveConfig();
+    }
+
+    public boolean isSeconds () {
+        return config.isSeconds();
+    }
+
+    public void setSeconds(boolean val) {
+        config.setSeconds(val);
+        saveConfig();
+    }
+
+    public boolean isMilliseconds () {
+        return config.isMilliseconds();
+    }
+
+    public void setMilliseconds(boolean val) {
+        config.setMilliseconds(val);
+        saveConfig();
+    }
+
+    public boolean is24Hour () {
+        return config.isHour24();
+    }
+
+    public void set24Hour(boolean val) {
+        config.setHour24(val);
+        saveConfig();
     }
 
     public void reloadConfig() {
