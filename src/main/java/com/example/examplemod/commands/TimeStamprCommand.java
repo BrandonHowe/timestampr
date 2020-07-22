@@ -17,10 +17,14 @@ public class TimeStamprCommand extends CommandBase {
 
     private final String helpMessage = "\u00a77\u00a7m------------\u00a77[\u00a76\u00a7l TimeStampr v" + TimeStampr.VERSION + " \u00a77]\u00a77\u00a7m------------" + "\n" +
             "\u00a76 /timestampr \u00a77- Open this help message" + "\n" +
+            "\u00a76 /timestampr <enable|disable> \u00a77- Enable or disable TimeStampr" + "\n" +
             "\u00a76 /timestampr prefix \u00a77- Edit timestamp prefix" + "\n" +
             "\u00a76 /timestampr separator \u00a77- Edit timestamp separator" + "\n" +
             "\u00a76 /timestampr suffix \u00a77- Edit timestamp suffix" + "\n" +
-            "\u00a76 /timestampr color \u00a77- Edit timestamp color" + "\n" +
+            "\u00a76 /timestampr color [color] \u00a77- Edit timestamp color" + "\n" +
+            "\u00a76 /timestampr seconds <on|off> \u00a77- Enable or disable seconds" + "\n" +
+            "\u00a76 /timestampr milliseconds <on|off> \u00a77- Enable or disable milliseconds" + "\n" +
+            "\u00a76 /timestampr 24hour <on|off> \u00a77- Enable or disable 24 hour time" + "\n" +
             "\u00a77\u00a7m------------------------------------------";
 
     public TimeStamprCommand() {
