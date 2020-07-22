@@ -125,7 +125,7 @@ public class TimeStamprCommand extends CommandBase {
                     }
                 }
             } else if (args[0].equalsIgnoreCase("milliseconds")) {
-                final boolean argvs1Enable = args[1].equalsIgnoreCase("on");
+                final boolean args1Enable = args[1].equalsIgnoreCase("on");
                 final boolean args1Disable = args[1].equalsIgnoreCase("off");
                 if (!args1Enable && !args1Disable) {
                     TimeStampr.sendMessage("You have to specify on or off!");
