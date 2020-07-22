@@ -118,6 +118,26 @@ public class TimeStamprCommand extends CommandBase {
                         TimeStampr.sendMessage("Successfully disabled seconds!");
                     }
                 }
+            } else if (args[0].equalsIgnoreCase("24hour")) {
+                final boolean args1Enable = args[1].equalsIgnoreCase("on");
+                final boolean args1Disable = args[1].equalsIgnoreCase("off");
+                if (!args1Enable && !args1Disable) {
+                    TimeStampr.sendMessage("You have to specify on or off!");
+                } else if (args1Enable) {
+                    if (main.is24Hour()) {
+                        TimeStampr.sendMessage("24 hour mode is already enabled!");
+                    } else {
+                        main.set24Hour(true);
+                        TimeStampr.sendMessage("Successfully enabled 24 hour mode!");
+                    }
+                } else {
+                    if (!main.is24Hour()) {
+                        TimeStampr.sendMessage("24 hour mode is already disabled!");
+                    } else {
+                        main.set24Hour(false);
+                        TimeStampr.sendMessage("Successfully disabled 24 hour mode!");
+                    }
+                }
             } else {
                 TimeStampr.sendMessage("You need your new value to be in quotes!");
             }

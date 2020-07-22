@@ -65,6 +65,15 @@ public class TimeStampr
         saveConfig();
     }
 
+    public boolean is24Hour () {
+        return config.isHour24();
+    }
+
+    public void set24Hour(boolean val) {
+        config.setHour24(val);
+        saveConfig();
+    }
+
     public void reloadConfig() {
         config = new Config(configFile);
     }

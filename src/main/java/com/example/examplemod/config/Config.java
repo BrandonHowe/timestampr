@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Config {
     @Getter @Setter private boolean enabled = true;
     @Getter @Setter private boolean seconds = true;
+    @Getter @Setter private boolean hour24 = true;
     private File configFile;
     private HashMap<String, String> settings;
     @Getter @Setter private String color;
@@ -41,7 +42,8 @@ public class Config {
             JsonObject config = new JsonParser().parse(builder.toString()).getAsJsonObject();
             System.out.println("Config: " + config);
             this.enabled = config.has("enabled") && config.get("enabled").getAsBoolean();
-            this.seconds = config.has("enabled") && config.get("enabled").getAsBoolean();
+            this.seconds = config.has("seconds") && config.get("seconds").getAsBoolean();
+            this.hour24 = config.has("hour24") && config.get("hour24").getAsBoolean();
             JsonObject settings = config.has("settings") ? config.getAsJsonObject("settings").getAsJsonObject() : new JsonObject();
             this.settings = new Gson().fromJson(settings.toString(), HashMap.class);
             this.color = config.has("color") ? config.get("color").getAsString() : "GRAY";
@@ -54,6 +56,7 @@ public class Config {
         JsonObject master = new JsonObject();
         master.addProperty("enabled", true);
         master.addProperty("seconds", true);
+        master.addProperty("hour24", true);
         JsonObject settings = new JsonObject();
         settings.addProperty("prefix", "[");
         settings.addProperty("separator", ":");
@@ -80,6 +83,7 @@ public class Config {
         JsonObject master = new JsonObject();
         master.addProperty("enabled", true);
         master.addProperty("seconds", seconds);
+        master.addProperty("hour24", hour24);
         JsonObject settings = gson.toJsonTree(this.settings).getAsJsonObject();
         master.add("settings", settings);
         master.addProperty("color", color);
